@@ -1,11 +1,12 @@
 /*
-	libstore.start( name ): Store
+	libstore.open( name ): Store
 	store table == [row] in memory, process life-time
 	- operations are not serialized!
 	- automatic id field ++autoincrement
 	- other fields -schema is managed by client code
 	- field value types: bool, string, number !(object, array, null)
 
+	Store.methods:
 	- exists( s, fl=uname ): bool
 	- current( s, fl )
 	- find( s, fl, inexact=false )
@@ -22,13 +23,13 @@
 
 
 
-module.exports = { start };
+module.exports = { open };
 
 //
 const _stores = {};
 
 // create or open table
-function start( name ) {
+function open( name ) {
 
 	if ( !name || typeof name !== 'string' ) {
 		throw new Error('Invalid store name');

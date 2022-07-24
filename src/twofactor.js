@@ -17,7 +17,7 @@ module.exports = mount2FA;
 // mount2FA( cfg, halt ): expressRouter
 function mount2FA( cfg, halt ) {
 
-	const users = libstore.start('users');
+	const users = libstore.open('users');
 
 	const router = express.Router();
 

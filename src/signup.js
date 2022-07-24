@@ -17,8 +17,8 @@ module.exports = mountSignup;
 // mountSignup( cfg, halt ): expressRouter
 function mountSignup( cfg, halt ) {
 
-	const pending = libstore.start('pending');
-	const users = libstore.start('users');
+	const pending = libstore.open('pending');
+	const users = libstore.open('users');
 
 	const router = express.Router();
 
