@@ -23,8 +23,8 @@ module.exports = { mount, configure };
 // mount( cfg ): expressApp -set routes
 function mount( cfg ) {
 
-	const pending = libstore.start('pending');
-	const users = libstore.start('users');
+	const pending = libstore.open('pending');
+	const users = libstore.open('users');
 	// pending sign-up and users tables
 
 	const app = express();
