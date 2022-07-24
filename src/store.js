@@ -78,8 +78,7 @@ class Store {
 		if (err) {
 			return [err];
 		}
-		this.autoid += 1;
-		const id = this.autoid;
+		const id = this.autoid += 1;
 		this.rows.push( Object.assign(row, { id }) );
 		return ['', id];
 	}
@@ -170,7 +169,7 @@ class Store {
 			return [err];
 		}
 		else if ( !Array.isArray(rows) || rows.length !== 1 ) {
-			return ['Not found or unique'];
+			return ['None or duplicate'];
 		}
 		return ['', rows[0]];
 	}

@@ -1,5 +1,5 @@
 /*
-	Login360 sign-up/login users
+	Login360 users sign-up/login functions
 
 */
 
@@ -34,7 +34,7 @@ function getHash( cfg, text ) {
 }
 
 
-// validAuth( users:table auth:string ): id? -must: one exists
+// validAuth( users: Store, auth: string ): id? -must: one exists
 function validAuth( users, auth ) {
 
 	if ( !auth || auth.length !== 64 ) { // sha-256
