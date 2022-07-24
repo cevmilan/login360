@@ -44,12 +44,13 @@ function mount( cfg ) {
 	// exceptions -response as json with error field
 	app.use((err, req, res, next) => {
 
+		const msg = res.locals.url + ' Server error!';
 		if (res.headersSent) {
-			next('Server error!');
+			next(msg);
 		}
-		console.log('Server error!');
+		console.log(msg);
 		console.log(err);
-		res.status(500).send({error: 'Server error!'});
+		res.status(500).send({error: msg});
 	});
 
 
