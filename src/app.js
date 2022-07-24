@@ -41,7 +41,7 @@ function mount( cfg ) {
 	});
 
 
-	// exceptions -respond only with generic message
+	// exceptions -response as json with error field
 	app.use((err, req, res, next) => {
 
 		if (res.headersSent) {
