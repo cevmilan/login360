@@ -121,7 +121,7 @@ function signupSendEmail( cfg, email, cburl ) {
 }
 
 
-// signupContinue( row ): bool
+// signupContinue( row, timeout ): bool
 function signupContinue( row, timeout ) {
 
 	if ( !timeout ) { // 0==disabled
