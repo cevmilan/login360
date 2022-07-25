@@ -82,5 +82,32 @@ Logging with console.error (to stderr) is not used,
 to have all messages and steps in sequence with error lines.
 
 
+## Testing with curl
+
+- Every curl command has this format:
+	- `curl -H "Content-Type: application/json" -X POST <URL> <DATA>`
+- Signup will send e-mail
+	- `http://localhost:9999/signup`
+	- `-d '{"email":"<your>@<mail>","passwd":"XXXXXXX"}'`
+- Verify sent secret, returns auth, no need to login
+	- `http://localhost:9999/signup/verifymail`
+	- `-d '{"verify":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"}'`
+- Login with uname == email, returns auth
+	- `http://localhost:9999/login`
+	- `-d '{"uname":"<your>@<mail>","passwd":"XXXXXXX"}'`
+- Change old to new password, requires auth
+	- `http://localhost:9999/changepass`
+	- `-d '{"uname":"<your>@<mail>","oldpass":"XXXXXXX","newpass":"YYYYYYY",auth:"AAAAAAAAAA"}'`
+- Logout, requires auth
+	- `http://localhost:9999/logout`
+	- `-d '{auth:"AAAAAAAAAA"}'`
+- Twofactor login start will send sms, old phone is used or required first time
+	- `http://localhost:9999/twofactor`
+	- `-d '{"uname":"<your>@<mail>","passwd":"XXXXXXX","phone":"NNNNNNNN"}'`
+- Twofactor login finish, otp code sent by sms, returns auth
+	- `http://localhost:9999/twofactor/entercode`
+	- `-d '{"uname":"<your>@<mail>", "otp":"CCCCCC"}'`
+
+
 
 ##
