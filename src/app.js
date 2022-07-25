@@ -194,16 +194,17 @@ function configure() {
 		targetUrl: process.env.TARGETURL,
 		salt: process.env.SALT,
 		otpSeed: process.env.OTPSEED,
-		otpTimeout: process.env.OTPTIMEOUT || 60,
+		otpTimeout: parseInt(process.env.OTPTIMEOUT || 60, 10),
 		minLength: process.env.MINLENGTH || 5,
-		verifyTimeout: process.env.VERIFYTIMEOUT || 3600,
-		port: process.env.PORT || 9999
+		verifyTimeout: parseInt(process.env.VERIFYTIMEOUT || 3600, 10),
+		port: parseInt(process.env.PORT || 9999, 10)
 	};
 
 	const bad = (
 		!cfg.twilioPhone || !cfg.twilioSid || !cfg.twilioToken || !cfg.mailFrom ||
 		!cfg.salt || !cfg.targetUrl || !cfg.mgKey || !cfg.mgDomain ||
-		(cfg.otpSeed && cfg.otpSeed !== cfg.otpSeed.replace(/[^2-7A-Z=]+/g, ''))
+		(cfg.otpSeed && cfg.otpSeed !== cfg.otpSeed.replace(/[^2-7A-Z=]+/g, '')) ||
+		isNaN(cfg.otpTimeout) || isNaN(cfg.verifyTimeout) || isNaN(cfg.port)
 	);
 
 	return bad ? null : cfg;
