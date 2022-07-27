@@ -135,6 +135,11 @@ function mount( cfg ) {
 			console.log('Warning! Login is active: '+ uname); // halt ?
 		}
 
+		const passhash = libusers.getHash(cfg, passwd);
+		if (passhash !== current.passwd) {
+			return halt(res, 'Invalid password '+uname);
+		}
+
 		console.log('/login id '+ current.id +' '+ uname);
 
 		const [err2, auth] = libusers.doLogin(cfg, users, current.id);

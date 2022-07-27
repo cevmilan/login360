@@ -31,7 +31,7 @@ function mount2FA( cfg, halt ) {
 	- in this app, uname == email
 	- return twilio sms sid
 	*/
-	router.post('/', (req, res, next) => {
+	router.post('/', (req, res) => {
 
 		const passwd = req.body.passwd || '';
 		const uname = req.body.uname || '';
@@ -46,6 +46,11 @@ function mount2FA( cfg, halt ) {
 		}
 		if (current.auth) {
 			console.log('Warning! Login is active: '+ uname); // halt ?
+		}
+
+		const passhash = libusers.getHash(cfg, passwd);
+		if (passhash !== current.passwd) {
+			return halt(res, 'Invalid password '+uname);
 		}
 
 		let phone = (req.body.phone || '').replace(/[^0-9\+]+/g, '');

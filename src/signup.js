@@ -31,7 +31,7 @@ function mountSignup( cfg, halt ) {
 	- save sing-up in "pending" table
 	- return mailgun message id
 	*/
-	router.post('/', (req, res, next) => {
+	router.post('/', (req, res) => {
 
 		const email = req.body.email || '';
 		const passwd = req.body.passwd || '';

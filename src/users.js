@@ -131,6 +131,5 @@ function signupContinue( row, timeout ) {
 		return false;
 	}
 	const tnow = (new Date).getTime();
-	const ok = tnow < (timeout * 1000 + row.created);
-	return ok;
+	return tnow < (timeout * 1000 + row.created);
 }
