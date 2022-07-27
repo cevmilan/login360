@@ -17,7 +17,6 @@
 	Methods return [ error, result ] (except exists)
 	- error or empty on success
 	- result is id or [row] or none
-	- lastx is 0 or last index found
 
 */
 
